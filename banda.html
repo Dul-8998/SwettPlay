@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SONORA | Tu música, tu momento</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="menu">
+  <button class="menu-boton" id="menuBoton"
+          aria-expanded="false" aria-controls="menuLista">
+    <span>☰ Menú principal</span>
+    <span id="flecha">⌄</span>
+  </button>
+
+ <div class="menu-lista" id="menuLista" hidden>
+    <a href="index.html">⌂ Inicio</a>
+    <a href="corridos.html">🎧Corridos Tumbados</a>
+    <a href="banda.html">🎙Norteño Banda</a>
+  
+  </div>
+</nav><br>
+<br>
+        <h2>Álbumes destacados</h2>
+        <p class="descripcion">
+            Selecciona una portada para descubrir sus canciones.
+        </p>
+
+        <section class="albumes">
+
+            <details class="album">
+                <summary>
+                    <img src="remmy.jpg"></a>
+                    <div class="info">
+                       
+                        <p>Remmy Valenzuela</p>
+                        <span class="boton">Ver canciones ♫</span>
+                    </div>
+                </summary>
+
+                <div class="canciones">
+                    <h3>Lista de canciones</h3>
+                    <ol>
+                         <li><a href="murio.html"><img src="murio_amor.jpg" height="80" width="80"></a>Se Murió De Amor</li>
+                        <li><a href="princesa.html"><img src="princesa.jpg" height="80" width="80"></a>Mi Princesa</li>
+                    </ol>
+                </div>
+            </details>
+
+            <details class="album">
+                <summary>
+                    <img src="banda_carnaval.jpg">
+                    <div class="info">
+                 
+                        <p>Banda Carnaval</p>
+                        <span class="boton">Ver canciones ♫</span>
+                    </div>
+                </summary>
+
+                <div class="canciones">
+                    <h3>Lista de canciones</h3>
+                    <ol>
+                        <li><a href="encontrarte.html"><img src="encontrarte.jpg" height="80" width="80"></a>Encontrarte</li>
+                        <li><a href="historia.html"><img src="historia.jpg" height="80" width="80"></a>La Historia De Mis Manos</li>
+                    </ol>
+                </div>
+            </details>
+
+            <details class="album">
+                <summary>
+                     <img src="montero.jpg">
+                    <div class="info">
+                      
+                        <p>Germán Montero</p>
+                        <span class="boton">Ver canciones ♫</span>
+                    </div>
+                </summary>
+
+                <div class="canciones">
+                    <h3>Lista de canciones</h3>
+                    <ol>
+                        <li><a href="german.html"><img src="amantes.jpg" height="80" width="80"></a> Amantes a escondidas</li>
+                        <li><a href="separa.html"><img src="separa.jpg" height="80" width="80"></a>¿Qué nos separa?</li>
+                    </ol>
+                </div>
+            </details>
+
+        </section>
+
+       
+
+    </main>
+   <script>
+   const menuBoton = document.getElementById("menuBoton");
+const menuLista = document.getElementById("menuLista");
+const flecha = document.getElementById("flecha");
+
+menuBoton.addEventListener("click", () => {
+  const abierto = menuBoton.getAttribute("aria-expanded") === "true";
+
+  menuBoton.setAttribute("aria-expanded", String(!abierto));
+  menuLista.hidden = abierto;
+  flecha.textContent = abierto ? "⌄" : "⌃";
+});
+
+document.addEventListener("click", (evento) => {
+  if (!evento.target.closest(".menu")) {
+    menuLista.hidden = true;
+    menuBoton.setAttribute("aria-expanded", "false");
+    flecha.textContent = "⌄";
+  }
+});
+</script>
+</body>
+</html>
+
