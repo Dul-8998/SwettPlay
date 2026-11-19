@@ -1,0 +1,233 @@
+
+/* COLORES DEL REPRODUCTOR */
+
+:root {
+    --terracota: #9E4030;
+    --terracota-oscuro: #54251F;
+    --terracota-profundo: #351B18;
+    --terracota-claro: #C8785C;
+    --coral: #FF6B8B;
+    --borgoña: #7A003C;
+    --rosa-suave: #FF9FC1;
+    --durazno-claro: #FFE7C6;
+}
+
+/* CONFIGURACIÓN GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--terracota-profundo);
+    color: var(--durazno-claro);
+}
+
+/* REPRODUCTOR */
+
+.reproductor {
+    width: 100%;
+    max-width: 850px;
+    min-height: 100vh;
+    margin: auto;
+    padding: 25px;
+    background: linear-gradient(
+        180deg,
+        var(--terracota) 0%,
+        var(--terracota-oscuro) 55%,
+        var(--terracota-profundo) 100%
+    );
+}
+
+/* ENCABEZADO */
+
+
+
+.encabezado h3 {
+    font-size: 18px;
+    text-align: center;
+}
+
+.flecha,
+.puntos {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* PORTADA DEL VIDEO */
+
+.portada {
+    width: 100%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.portada video {
+    width: 100%;
+    max-width: 850px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    background-color: var(--borgoña);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+/* AJUSTE DEL TAMAÑO DEL VIDEO */
+.reproductor .portada {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.reproductor .portada video,
+.reproductor video {
+    width: 100%;
+    height: 550px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 600px) {
+    .reproductor .portada video,
+    .reproductor video {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* INFORMACIÓN */
+
+.informacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 35px 10px;
+}
+
+.informacion h1 {
+    font-size: 32px;
+    color: var(--durazno-claro);
+    margin-bottom: 8px;
+}
+
+.informacion p {
+    font-size: 20px;
+    color: var(--rosa-suave);
+}
+
+
+
+/* BARRA DE PROGRESO */
+
+.progreso {
+    margin: 30px 10px;
+}
+
+#barra {
+    width: 100%;
+    height: 8px;
+    accent-color: var(--coral);
+    cursor: pointer;
+}
+
+.tiempos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: var(--rosa-suave);
+    font-size: 14px;
+}
+
+/* CONTROLES */
+
+.controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 10px;
+}
+
+.controles button {
+    background: transparent;
+    border: none;
+    color: var(--durazno-claro);
+    font-size: 32px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.controles button:hover {
+    color: var(--coral);
+    transform: scale(1.1);
+}
+
+/* BOTÓN PRINCIPAL */
+
+.controles .play {
+    background: var(--durazno-claro);
+    color: var(--terracota-oscuro);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    font-size: 38px;
+}
+
+.controles .play:hover {
+    background: var(--coral);
+    color: white;
+}
+
+/* OPCIONES INFERIORES */
+
+.opciones {
+    display: flex;
+    justify-content: space-between;
+    font-size: 30px;
+    margin: 35px 10px;
+    cursor: pointer;
+}
+
+
+/* DISEÑO RESPONSIVO PARA CELULARES */
+
+@media (max-width: 600px) {
+
+    .reproductor {
+        padding: 15px;
+    }
+
+    .encabezado h3 {
+        font-size: 14px;
+    }
+
+    .portada {
+        margin: 35px auto;
+    }
+
+    .informacion h1 {
+        font-size: 25px;
+    }
+
+    .informacion p {
+        font-size: 16px;
+    }
+
+    .controles button {
+        font-size: 23px;
+    }
+
+    .controles .play {
+        width: 75px;
+        height: 75px;
+        font-size: 30px;
+    }
+
+    .letra h2 {
+        font-size: 24px;
+    }
+
+}

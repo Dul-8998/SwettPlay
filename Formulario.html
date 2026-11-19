@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SONORA | Tu música, tu momento</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de registro</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="validacion.js" defer></script>
+</head>
+<body>
+<main class="contenedor" style="display: flex; justify-content: flex-start; align-items: flex-start;">
+ <nav class="menu">
+  <button class="menu-boton" id="menuBoton"
+          aria-expanded="false" aria-controls="menuLista">
+    <span>☰ Menú principal</span>
+    <span id="flecha">⌄</span>
+  </button>
+
+  <div class="menu-lista" id="menuLista" hidden>
+    <a href="index.html"> 🏠 Inicio</a>
+    <a href="corridos.html">🎧Corridos Tumbados</a>
+    <a href="banda.html">🪗 Norteño Banda</a>
+    <a href="formulario.html">📋 Suscripción</a>
+  
+  </div>
+</nav>
+</main>
+  <main class="contenedor">
+    <section id="vistaFormulario">
+      <h1>Formulario de registro</h1>
+      <p class="introduccion">Completa todos los campos.</p>
+
+      <form id="formulario" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="given-name" aria-describedby="errorNombre">
+          <small class="error" id="errorNombre" aria-live="polite"></small>
+        </div>
+
+        <div class="campo">
+          <label for="apellidoPaterno">Apellido paterno</label>
+          <input id="apellidoPaterno" name="apellidoPaterno" type="text" autocomplete="family-name" aria-describedby="errorPaterno">
+          <small class="error" id="errorPaterno" aria-live="polite"></small>
+        </div>
+
+        <div class="campo">
+          <label for="apellidoMaterno">Apellido materno</label>
+          <input id="apellidoMaterno" name="apellidoMaterno" type="text" aria-describedby="errorMaterno">
+          <small class="error" id="errorMaterno" aria-live="polite"></small>
+        </div>
+
+        <div class="campo">
+          <label for="edad">Edad</label>
+          <input id="edad" name="edad" type="text" inputmode="numeric" maxlength="3" autocomplete="off" aria-describedby="errorEdad">
+          <small class="error" id="errorEdad" aria-live="polite"></small>
+        </div>
+        
+
+        <div class="campo">
+  <label for="numeroCuenta">Número de cuenta</label>
+  <input
+    id="numeroCuenta"
+    name="numeroCuenta"
+    type="text"
+    maxlength="16"
+    minlength="16"
+    inputmode="numeric"
+    pattern="[0-9]{16}"
+    autocomplete="off"
+    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16)"
+    aria-describedby="errorNumeroCuenta"
+    required
+  >
+  <small class="error" id="errorNumeroCuenta" aria-live="polite"></small>
+</div>
+        <div class="campo">
+  <label for="fechaNacimiento">Fecha de nacimiento</label>
+  <input
+    type="date"
+    id="fechaNacimiento"
+    name="fechaNacimiento"
+    autocomplete="bday"
+    required
+  >
+  <small class="error" id="errorFechaNacimiento" aria-live="polite"></small>
+</div>
+
+        <div class="campo">
+          <label for="email">Correo electrónico</label>
+          <input id="email" name="email" type="text" inputmode="email" autocomplete="email" aria-describedby="errorEmail">
+          <small class="error" id="errorEmail" aria-live="polite"></small>
+        </div>
+
+        <button type="submit">Suscribirse</button>
+      </form>
+    </section>
+
+    <section id="vistaExito" class="exito" hidden role="status" aria-live="polite">
+      <h1>¡Formulario Terminado!</h1>
+      <p>Todos tus datos fueron validados correctamente.</p>
+      <button type="button" onclick="window.location.href='formulario.html'">
+    Terminar
+</button>
+    </section>
+  </main>
+
+     <script>
+   const menuBoton = document.getElementById("menuBoton");
+const menuLista = document.getElementById("menuLista");
+const flecha = document.getElementById("flecha");
+
+menuBoton.addEventListener("click", () => {
+  const abierto = menuBoton.getAttribute("aria-expanded") === "true";
+
+  menuBoton.setAttribute("aria-expanded", String(!abierto));
+  menuLista.hidden = abierto;
+  flecha.textContent = abierto ? "⌄" : "⌃";
+});
+
+document.addEventListener("click", (evento) => {
+  if (!evento.target.closest(".menu")) {
+    menuLista.hidden = true;
+    menuBoton.setAttribute("aria-expanded", "false");
+    flecha.textContent = "⌄";
+  }
+});
+
+</script>
+</body>
+</html>

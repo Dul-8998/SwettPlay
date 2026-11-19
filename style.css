@@ -1,0 +1,217 @@
+
+
+/* COLORES TERRACOTA Y CREMA */
+:root {
+    --terracota: #B85C38;
+    --terracota-oscuro: #713821;
+    --terracota-claro: #D98765;
+    --crema: #FFF4E2;
+    --crema-oscuro: #F0DFC5;
+    --cafe: #3D2922;
+    --texto-suave: #79594B;
+}
+
+/* ESTILO GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--crema);
+    color: var(--cafe);
+    min-height: 100vh;
+}
+
+/* ENCABEZADO */
+.encabezado {
+    text-align: center;
+    padding: 30px 15px;
+    background: linear-gradient(
+        120deg,
+        var(--terracota-oscuro),
+        var(--terracota)
+    );
+    border-bottom: 5px solid var(--terracota-claro);
+    color: var(--crema);
+}
+
+.encabezado h1 {
+    font-size: clamp(32px, 5vw, 55px);
+    letter-spacing: 5px;
+    color: var(--crema);
+    text-shadow: 3px 3px 0 var(--terracota-oscuro);
+}
+
+.encabezado p {
+    margin-top: 8px;
+    font-size: 17px;
+    color: #FFE5D1;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor {
+    width: 95%;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+.contenedor h2 {
+    font-size: clamp(25px, 4vw, 38px);
+    color: var(--terracota-oscuro);
+    margin-bottom: 10px;
+}
+
+.descripcion {
+    color: var(--texto-suave);
+    margin-bottom: 25px;
+}
+
+/* TARJETAS DE ÁLBUMES */
+.albumes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
+}
+
+.album {
+    background: #FFFAF1;
+    border: 2px solid var(--crema-oscuro);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 14px #71382112;
+    transition: transform 0.3s, border-color 0.3s,
+                box-shadow 0.3s;
+}
+
+.album:hover {
+    transform: translateY(-5px);
+    border-color: var(--terracota);
+    box-shadow: 0 10px 24px #71382124;
+}
+
+/* PORTADAS */
+.album summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.album summary::-webkit-details-marker {
+    display: none;
+}
+
+.album summary img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 4.2;
+    object-fit: cover;
+    background: var(--crema-oscuro);
+}
+
+/* INFORMACIÓN DEL ÁLBUM */
+.info {
+    padding: 16px;
+}
+
+.info h3 {
+    font-size: clamp(16px, 2vw, 22px);
+    margin-bottom: 8px;
+    color: var(--terracota-oscuro);
+}
+
+.info p {
+    font-size: 14px;
+    color: var(--texto-suave);
+    margin-bottom: 15px;
+}
+
+/* BOTÓN */
+.boton {
+    display: inline-block;
+    padding: 10px 13px;
+    border-radius: 20px;
+    background: var(--terracota);
+    color: var(--crema);
+    font-size: 13px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.album:hover .boton {
+    background: var(--terracota-oscuro);
+}
+
+/* LISTA DE CANCIONES */
+.canciones {
+    padding: 18px;
+    border-top: 2px solid var(--terracota-claro);
+    background: var(--crema-oscuro);
+}
+
+.canciones h3 {
+    color: var(--terracota-oscuro);
+    margin-bottom: 12px;
+}
+
+.canciones ol {
+    padding-left: 23px;
+}
+
+.canciones li {
+    padding: 10px 4px;
+    border-bottom: 1px solid #D9BDA7;
+    color: var(--cafe);
+}
+
+.canciones li:last-child {
+    border-bottom: none;
+}
+
+/* ÁLBUM ABIERTO */
+.album[open] {
+    border-color: var(--terracota);
+}
+
+.album[open] .boton {
+    background: var(--terracota-oscuro);
+    color: var(--crema);
+}
+
+/* PIE DE PÁGINA */
+footer {
+    text-align: center;
+    padding: 30px 10px;
+    margin-top: 35px;
+    color: var(--texto-suave);
+    border-top: 1px solid var(--crema-oscuro);
+}
+
+/* TABLETAS */
+@media (max-width: 800px) {
+    .albumes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* CELULARES */
+@media (max-width: 500px) {
+    .albumes {
+        grid-template-columns: 1fr;
+    }
+
+    .contenedor {
+        width: 92%;
+        margin-top: 25px;
+    }
+
+    .encabezado {
+        padding: 25px 10px;
+    }
+
+    .album summary img {
+        aspect-ratio: 4 / 3;
+    }
+}

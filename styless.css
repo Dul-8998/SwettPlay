@@ -1,0 +1,291 @@
+
+/* COLORES TERRACOTA Y CREMA */
+:root {
+    --terracota: #9E4030;
+    --terracota-oscuro: #54251F;
+    --terracota-profundo: #351B18;
+    --terracota-claro: #C8785C;
+    --coral: #FF6B8B;
+    --borgoña: #7A003C;
+    --rosa-SUAVE: #FF9FC1;
+    --durazno-claro: #FFE7C6;
+}
+
+/* CONFIGURACIÓN GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--borgoña);
+    color: var(--terracota-oscuro);
+    min-height: 100vh;
+}
+
+/* REPRODUCTOR */
+.reproductor {
+    width: 100%;
+    max-width: 850px;
+    min-height: 100vh;
+    margin: auto;
+    padding: 25px 35px;
+    background: linear-gradient(
+        180deg,
+        #FF9FC1 20%,
+        var(--coral) 65%,
+        var(--rosa-SUAVE) 70%
+    );
+}
+
+/* BARRA SUPERIOR */
+.barra-superior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.flecha {
+    font-size: 36px;
+}
+
+.titulo-superior {
+    flex: 1;
+}
+
+.titulo-superior p {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.titulo-superior span {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: var(--crema-suave);
+}
+
+.puntos {
+    font-size: 23px;
+    letter-spacing: 3px;
+}
+
+/* PORTADA */
+.portada {
+    width: 100%;
+    max-width: 740px;
+    margin: 0 auto;
+}
+
+.portada img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 9px;
+    background: var(--borgoña);
+    box-shadow: 0 12px 35px #210d0b55;
+}
+
+/* INFORMACIÓN DE LA CANCIÓN */
+.informacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 35px 0 45px;
+}
+
+.informacion h1 {
+    font-size: clamp(25px, 4vw, 36px);
+    margin-bottom: 8px;
+    color: var(--crema);
+}
+
+.informacion p {
+    font-size: 18px;
+    color: var(--borgoña);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+.progreso {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#barra-progreso {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #FF9FC1;
+}
+
+.tiempos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+/* CONTROLES */
+.controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 35px 0;
+}
+
+.secundario {
+    border: none;
+    background: transparent;
+    color: var(--borgoña);
+    font-size: clamp(20px, 3vw, 32px);
+    padding: 5px;
+    transition: 0.2s;
+}
+
+.secundario:hover {
+    color: var(--terracota-claro);
+    transform: scale(1.1);
+}
+
+.oculto {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.boton-play {
+    width: 88px;
+    height: 88px;
+    min-width: 70px;
+    border-radius: 50%;
+    background: var(--crema);
+    color: var(--terracota-oscuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.boton-play:hover {
+    transform: scale(1.06);
+}
+
+.play {
+    display: none;
+    margin-left: 5px;
+}
+
+#reproducir:checked + .boton-play .pausa {
+    display: none;
+}
+
+#reproducir:checked + .boton-play .play {
+    display: inline;
+}
+
+/* TABLETAS */
+@media (max-width: 650px) {
+    .reproductor {
+        padding: 22px;
+    }
+
+    .barra-superior {
+        margin-bottom: 28px;
+    }
+
+    .informacion {
+        margin: 30px 0;
+    }
+
+    .boton-play {
+        width: 76px;
+        height: 76px;
+    }
+}
+
+/* CELULARES */
+@media (max-width: 420px) {
+    .reproductor {
+        padding: 18px 15px;
+    }
+
+    .titulo-superior p {
+        font-size: 13px;
+    }
+
+    .titulo-superior span {
+        font-size: 11px;
+    }
+
+    .flecha {
+        font-size: 28px;
+    }
+
+    .informacion p {
+        font-size: 15px;
+    }
+
+    .agregar {
+        width: 43px;
+        height: 43px;
+        font-size: 30px;
+    }
+
+    .controles {
+        gap: 5px;
+    }
+
+    .secundario {
+        font-size: 21px;
+    }
+
+    .boton-play {
+        width: 66px;
+        height: 66px;
+        min-width: 66px;
+        font-size: 28px;
+    }
+
+    .letra {
+        padding: 20px;
+    }
+}
+.progreso {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#barra-progreso {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    accent-color: white;
+    cursor: pointer;
+}
+
+.tiempos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

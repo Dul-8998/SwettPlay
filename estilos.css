@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: #ffeccc;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 520px;
+  padding: 30px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  background: #faafbe;
+}
+
+h1 {
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 27px;
+}
+
+.introduccion {
+  margin-bottom: 24px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.campo {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+input {
+  display: block;
+  width: 100%;
+  min-height: 43px;
+  padding: 10px 12px;
+  border: 1px solid #777;
+  border-radius: 5px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+}
+
+input:focus {
+  outline: 2px solid #555;
+  outline-offset: 2px;
+}
+
+input.incorrecto {
+  border: 2px solid #c00;
+}
+
+input.correcto {
+  border: 2px solid #333;
+}
+
+.error {
+  display: block;
+  min-height: 0;
+  margin-top: 5px;
+  color: #c00;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.error:empty {
+  display: none;
+}
+
+button {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 8px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background: #eee;
+  color: #111;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #fff
+
+button:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 3px;
+}
+
+.exito {
+  padding: 28px 8px;
+  text-align: center;
+}
+
+.exito p {
+  line-height: 1.6;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 14px;
+    align-items: flex-start;
+  }
+
+  .contenedor {
+    padding: 22px 18px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+}
+.contenedor {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    padding: 20px;
+}
+
+#vistaFormulario {
+    margin: auto;
+    margin-left: 0;
+    margin-right: auto;
+}
