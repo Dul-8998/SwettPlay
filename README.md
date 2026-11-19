@@ -1,2 +1,2 @@
 #Saludos y Bienvenido a mi Reproductor 
-Hol, espero les guste SweetPlay
+Hola, espero les guste SweetPlay
