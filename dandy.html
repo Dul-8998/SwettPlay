@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi reproductor musical</title>
+
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <div class="reproductor">
+
+        <!-- Encabezado -->
+        <header class="encabezado">
+            <span class="flecha"><a href="index.html"><span class="flecha"><img src="flecha." height="50" width="50"></span></a></span>
+            <h3>Reproduciendo video</h3>
+            <span class="puntos"></span>
+        </header>
+
+        <!-- Portada del video -->
+        <video id="miVideo" poster="portada.jpg">
+    <source src="el_rabbanito.mp4"  type="video/mp4" >
+    Tu navegador no puede reproducir este video.
+</video>
+
+
+        <!-- Información de la canción -->
+        <section class="informacion">
+
+            <div>
+                <h1>El Rabbanito</h1>
+                <p>Dandy Hats(Letra)</p>
+            </div>
+
+            
+
+        </section>
+
+        <!-- Barra de reproducción -->
+        <div class="progreso">
+            <input type="range" id="barra" value="0" min="0" max="100">
+
+            <div class="tiempos">
+                <span id="tiempoActual">0:00</span>
+                <span id="duracion">03:13</span>
+            </div>
+        </div>
+
+        <!-- Botones del reproductor -->
+        <div class="controles">
+
+          
+            <button onclick="retroceder()"><a href="correteando.html">◀</button></a>
+
+            <button class="play" onclick="reproducir()">
+                ▶
+            </button>
+
+            <button onclick="adelantar()"><a href="paciencia.html">▶</button></a>
+
+        </div>
+
+       
+
+    <!-- Funciones de reproducción -->
+    <script>
+
+        const video = document.getElementById("miVideo");
+        const barra = document.getElementById("barra");
+
+        // Reproducir o pausar
+        function reproducir() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+        
+
+
+        // Actualizar barra de progreso
+        video.addEventListener("timeupdate", function() {
+
+            barra.value = (video.currentTime / video.duration) * 100;
+
+            document.getElementById("tiempoActual").textContent =
+                formatoTiempo(video.currentTime);
+
+            document.getElementById("duracion").textContent =
+                formatoTiempo(video.duration);
+
+        });
+
+        // Mover video con la barra
+        barra.addEventListener("input", function() {
+
+            video.currentTime = (barra.value / 100) * video.duration;
+
+        });
+
+        // Convertir segundos a minutos
+        function formatoTiempo(segundos) {
+
+            let minutos = Math.floor(segundos / 60);
+            let segundosRestantes = Math.floor(segundos % 60);
+
+            return minutos + ":" +
+                (segundosRestantes < 10 ? "0" : "") +
+                segundosRestantes;
+        }
+
+    </script>
+
+</body>
+</html>
