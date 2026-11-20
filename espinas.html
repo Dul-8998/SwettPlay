@@ -1,0 +1,119 @@
+ 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Reproductor Musical</title>
+    <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+
+    <main class="reproductor">
+
+        <!-- BARRA SUPERIOR -->
+        <header class="barra-superior">
+            <a href="index.html"><span class="flecha"><img src="flecha." height="50" width="50"></span></a>
+            <div class="titulo-superior">
+                <p>REPRODUCIENDO MÚSICA</p>
+               
+            </div>
+            
+        </header>
+
+        <!-- PORTADA DE LA CANCIÓN -->
+        <section class="portada">
+            <img src="espinas.jpg" alt="Portada del álbum">
+        </section>
+
+        <!-- INFORMACIÓN DE LA CANCIÓN -->
+        <section class="informacion">
+            <div>
+                <h1>Tiene Espinas El Rosal</h1>
+                <p>Grupo Cañaveral De Humberto Pábon</p>
+            </div>
+            
+            
+            <!-- AUDIO DE LA CANCIÓN -->
+				<audio id="audio" src="espinas.mp3" style="display: none;"></audio>
+        </section>
+
+			<!-- BARRA DE PROGRESO -->
+			<section class="progreso">
+			    <input
+			        type="range"
+			        id="barra-progreso"
+			        min="0"
+			        max="100"
+			        value="0"
+			        aria-label="Progreso de la canción"
+			    >
+			    <div class="tiempos">
+			        <span id="tiempo-actual">0:00</span>
+			        <span id="duracion">2:49</span>
+			    </div>
+			</section>
+
+			<!-- CONTROLES -->
+			<section class="controles">
+			    
+			    <button id="anterior" class="secundario"></button>
+			    <button id="reproducir" class="boton-play">▶</button>
+			    <button id="siguiente" class="secundario"><a href="olvidar.html">▶|</button></a>
+			   
+			</section>
+
+    </main>
+    <script>
+const audio = document.getElementById("audio");
+const botonPlay = document.querySelector(".boton-play");
+const barra = document.getElementById("barra-progreso");
+
+botonPlay.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+});
+
+audio.addEventListener("play", () => {
+    botonPlay.textContent = "Ⅱ";
+});
+
+audio.addEventListener("pause", () => {
+    botonPlay.textContent = "▶";
+});
+
+audio.addEventListener("ended", () => {
+    botonPlay.textContent = "▶";
+    barra.value = 0;
+});
+
+audio.addEventListener("loadedmetadata", () => {
+    barra.max = audio.duration;
+
+    document.getElementById("duracion").textContent =
+        formatoTiempo(audio.duration);
+});
+
+function formatoTiempo(segundos) {
+    const min = Math.floor(segundos / 60);
+    const seg = Math.floor(segundos % 60);
+    return min + ":" + String(seg).padStart(2, "0");
+}
+audio.addEventListener("timeupdate", () => {
+    barra.value = audio.currentTime;
+
+    document.getElementById("tiempo-actual").textContent =
+        formatoTiempo(audio.currentTime);
+});
+
+barra.addEventListener("input", () => {
+    audio.currentTime = Number(barra.value);
+});
+</script>
+
+</body>
+</html>
+
