@@ -288,3 +288,20 @@ h2 em { color: var(--terracota); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .app {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+}
