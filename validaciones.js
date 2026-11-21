@@ -137,19 +137,131 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
-// Validar que la persona sea mayor de 18 años
+const calendario = document.getElementById("calendario");
+const fechaInput = document.getElementById("fechaInput");
 const fechaNacimiento = document.getElementById("fechaNacimiento");
+const dias = document.getElementById("dias");
+const mesAnio = document.getElementById("mesAnio");
 
+const meses = [
+  "enero", "febrero", "marzo", "abril",
+  "mayo", "junio", "julio", "agosto",
+  "septiembre", "octubre", "noviembre", "diciembre"
+];
+
+// Fecha máxima permitida: cumplir 18 años
 const hoy = new Date();
-
 const fechaLimite = new Date(
-    hoy.getFullYear() - 18,
-    hoy.getMonth(),
-    hoy.getDate()
+  hoy.getFullYear() - 18,
+  hoy.getMonth(),
+  hoy.getDate()
 );
 
-const anio = fechaLimite.getFullYear();
-const mes = String(fechaLimite.getMonth() + 1).padStart(2, "0");
-const dia = String(fechaLimite.getDate()).padStart(2, "0");
+// Abrir inicialmente en el mes límite
+let fechaActual = new Date(
+  fechaLimite.getFullYear(),
+  fechaLimite.getMonth(),
+  1
+);
 
-fechaNacimiento.max = `${anio}-${mes}-${dia}`;
+let fechaSeleccionada = null;
+
+fechaInput.addEventListener("click", () => {
+  calendario.classList.toggle("activo");
+  mostrarCalendario();
+});
+
+function mostrarCalendario() {
+  const año = fechaActual.getFullYear();
+  const mes = fechaActual.getMonth();
+
+  mesAnio.textContent = meses[mes] + " de " + año;
+  dias.innerHTML = "";
+
+  const primerDia = new Date(año, mes, 1).getDay();
+  const totalDias = new Date(año, mes + 1, 0).getDate();
+
+  for (let i = 0; i < primerDia; i++) {
+    dias.appendChild(document.createElement("span"));
+  }
+
+  for (let dia = 1; dia <= totalDias; dia++) {
+    const fecha = new Date(año, mes, dia);
+    const boton = document.createElement("button");
+
+    boton.type = "button";
+    boton.textContent = dia;
+
+    // Bloquear todas las fechas posteriores al límite
+    if (fecha > fechaLimite) {
+      boton.disabled = true;
+    }
+
+    if (
+      fechaSeleccionada &&
+      fecha.toDateString() === fechaSeleccionada.toDateString()
+    ) {
+      boton.classList.add("seleccionado");
+    }
+
+    boton.addEventListener("click", () => {
+      if (fecha > fechaLimite) return;
+
+      fechaSeleccionada = fecha;
+      mostrarCalendario();
+    });
+
+    dias.appendChild(boton);
+  }
+
+  // Bloquear avance a meses posteriores al límite
+  document.getElementById("mesSiguiente").disabled =
+    año === fechaLimite.getFullYear() &&
+    mes === fechaLimite.getMonth();
+}
+
+document.getElementById("mesAnterior").onclick = () => {
+  fechaActual.setMonth(fechaActual.getMonth() - 1);
+  mostrarCalendario();
+};
+
+document.getElementById("mesSiguiente").onclick = () => {
+  if (
+    fechaActual.getFullYear() < fechaLimite.getFullYear() ||
+    (fechaActual.getFullYear() === fechaLimite.getFullYear() &&
+     fechaActual.getMonth() < fechaLimite.getMonth())
+  ) {
+    fechaActual.setMonth(fechaActual.getMonth() + 1);
+    mostrarCalendario();
+  }
+};
+
+document.getElementById("restablecer").onclick = () => {
+  fechaSeleccionada = null;
+  fechaNacimiento.value = "";
+  fechaInput.textContent = "Selecciona tu fecha";
+  mostrarCalendario();
+};
+
+document.getElementById("confirmar").onclick = () => {
+  if (!fechaSeleccionada) {
+    alert("Selecciona tu fecha de nacimiento.");
+    return;
+  }
+
+  if (fechaSeleccionada > fechaLimite) {
+    alert("Debes tener al menos 18 años.");
+    return;
+  }
+
+  const dia = String(fechaSeleccionada.getDate()).padStart(2, "0");
+  const mes = String(fechaSeleccionada.getMonth() + 1).padStart(2, "0");
+  const año = fechaSeleccionada.getFullYear();
+
+  fechaInput.textContent = `${dia}/${mes}/${año}`;
+  fechaNacimiento.value = `${año}-${mes}-${dia}`;
+
+  calendario.classList.remove("activo");
+};
+
+mostrarCalendario();
